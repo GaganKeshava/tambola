@@ -80,7 +80,7 @@ function App() {
           })}
         </tbody>
       </table>
-      <h1>{currentNum}</h1>
+      <h1 className='currentNumber'>{currentNum}</h1>
       <div className='buttonContainer'>
         <button className='pickNumber' onClick={() => pickNumber(availableNums)}>Pick Number</button>
         <button className='resetNumber' onClick={() => resetNumber()}>Reset</button>

@@ -5,12 +5,14 @@
 }
 
 table {
-  scale: 0.8;
+  width: 100%;
+  padding: 5%;
 }
 
 td {
-  padding: 10px;
+  padding: 5px;
   border: 1px solid;
+  border-radius: 10px;
 }
 
 .ticked {
@@ -19,6 +21,7 @@ td {
 }
 
 .main {
+  width: 100%;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -26,6 +29,12 @@ td {
 }
 
 .header {
+  margin-top: 10px;
+  text-align: center;
+  width: 100%;
+}
+
+.currentNumber {
   margin-top: 10px;
 }
 
@@ -55,8 +64,3 @@ td {
   color: white;
   margin-top: 50px;
 }
-/* @media only screen and (max-width: 600px) {
-  body {
-    scale: 0.85;
-  }
-} */
