@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './App.css'
+import { Modal } from './component/Modal';
 
 const getInitialGrid = () => {
   let numbers = new Array();
@@ -37,6 +38,7 @@ function App() {
   const [grid, setGrid] = useState(() => getInitialGrid());
   const [availableNums, setAvailableNums] = useState(() => shuffleNumbers(createNumbers()));
   const [currentNum, setCurrentNum] = useState(0);
+  const [showModal, setShowModal] = useState(false);
 
   const pickNumber = (availableNums) => {
     const randomIndex = Math.floor(Math.random() * availableNums.length);
@@ -55,6 +57,7 @@ function App() {
   }
 
   const resetNumber = () => {
+    setShowModal(true)
     setAvailableNums(shuffleNumbers(createNumbers()));
     setCurrentNum(0)
     setGrid(grid => {
@@ -68,23 +71,26 @@ function App() {
 
   return (
     <div className='main'>
-      <h1 className='header'>Tambola</h1>
-      <table>
-        <tbody>
-          {grid.map((row,i) => {
-            return <tr key={i}>
-              {row.map((column,j) => {
-                return <td key={j} className={column.tick ? "ticked" : "unticked"} >{column.value}</td>
-              })}
-            </tr>
-          })}
-        </tbody>
-      </table>
-      <h1>{currentNum}</h1>
-      <div className='buttonContainer'>
-        <button className='pickNumber' onClick={() => pickNumber(availableNums)}>Pick Number</button>
-        <button className='resetNumber' onClick={() => resetNumber()}>Reset</button>
-      </div>
+      {/* <div className={showModal ? 'blur' : 'visible'}> */}
+        <h1 className='header'>Tambola</h1>
+        <table>
+          <tbody>
+            {grid.map((row,i) => {
+              return <tr key={i}>
+                {row.map((column,j) => {
+                  return <td key={j} className={column.tick ? "ticked" : "unticked"} >{column.value}</td>
+                })}
+              </tr>
+            })}
+          </tbody>
+        </table>
+        <h1>{currentNum}</h1>
+        <div className='buttonContainer'>
+          <button className='pickNumber' onClick={() => pickNumber(availableNums)}>Pick Number</button>
+          <button className='resetNumber' onClick={() => resetNumber()}>Reset</button>
+        </div>
+      {/* </div> */}
+      {showModal && <Modal setShowModal={setShowModal}/>}
     </div>
   )
 }
